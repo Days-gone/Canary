@@ -38,7 +38,7 @@ void Chat::DataReceived(){
             int total = recv["user_num"].toInt();
             for(int i {1}; i <= total; ++ i){
                 QString key = "user" + QString::number(i);
-                name_list.emplace_back(recv[key].toString());
+                name_list.push_back(recv[key].toString());
             }
             Update(name_list);
         }

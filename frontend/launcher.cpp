@@ -17,9 +17,9 @@ Launcher::~Launcher()
 
 void Launcher::on_LoginBtn_clicked()
 {
-//    _socket->connectToHost("10x1.42.174.249",8080);
+    _socket->connectToHost("101.42.174.249",8080);
     qDebug() << "login\n";
-    _socket->connectToHost("localhost",8080);
+//    _socket->connectToHost("localhost",8080);
 
     if (_socket->waitForConnected(5000)){
         QJsonObject mes;
@@ -49,7 +49,7 @@ void Launcher::on_LoginBtn_clicked()
         int total = recv["User_num"].toInt();
         for(int i {1}; i <= total; ++ i){
             QString key = "user" + QString::number(i);
-            name_list.emplace_back(recv[key].toString());
+            name_list.push_back(recv[key].toString());
         }
         for(auto i:name_list)
         {
@@ -66,7 +66,7 @@ void Launcher::on_LoginBtn_clicked()
 void Launcher::on_RegiBtn_clicked()
 {
     qDebug() << "register\n";
-    _socket->connectToHost("localhost",8080);
+    _socket->connectToHost("101.42.174.249",8080);
     if (_socket->waitForConnected(5000)){
         QJsonObject mes;
         mes["Level"] = "system";
