@@ -18,7 +18,6 @@ cursor.execute('''
 ''')
 
 
-
 def UpdateUserListMes():
     resp = {"Level":"system","Type":"login_back","Login_bool":"true","User_num":len(user_list)}
     for i in range(len(user_list)):
@@ -70,6 +69,7 @@ class Echo(protocol.Protocol):
                     "Level": "system",
                     "Type": "login_back",
                     "Login_bool": "true",
+                    "Login_info": "Login Succeeded!",
                     "User_num": len(user_list)
                 }
                 # Update the username for the connected user
@@ -85,7 +85,8 @@ class Echo(protocol.Protocol):
                 response = {
                     "Level": "system",
                     "Type": "login_back",
-                    "Login_bool": "false"
+                    "Login_bool": "false",
+                    "Login_info": "Password Dismatch!"
                 }
                 # Send the response only to the current client
                 self.transport.write(json.dumps(response).encode("utf-8"))

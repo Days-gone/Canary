@@ -41,7 +41,8 @@ void Launcher::on_LoginBtn_clicked()
         }
         QJsonObject recv = doc.object();
         if (recv["Login_bool"].toString() != "true"){
-            QMessageBox::information(this,"Fatal","Login failed");
+            QString er_info = recv["Login_info"].toString();
+            QMessageBox::information(this,"Fatal", er_info);
             return ;
         }
         QVector<QString> name_list;
