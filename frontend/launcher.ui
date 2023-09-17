@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Icy-chat</string>
+    <string>Canary</string>
    </property>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
@@ -52,6 +52,22 @@
        <string>Name:</string>
       </property>
      </widget>
+    </item>
+    <item>
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>25</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
     </item>
     <item>
      <widget class="QLineEdit" name="NameInput">
@@ -82,25 +98,9 @@
        </font>
       </property>
       <property name="text">
-       <string>Key:</string>
+       <string>Password</string>
       </property>
      </widget>
-    </item>
-    <item>
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Fixed</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
     </item>
     <item>
      <widget class="QLineEdit" name="KeyInput">
@@ -127,7 +127,7 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_3">
     <item>
-     <widget class="QPushButton" name="LoginBtn">
+     <widget class="QPushButton" name="RegiBtn">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -140,7 +140,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Login</string>
+       <string>Register</string>
       </property>
      </widget>
     </item>
@@ -161,7 +161,7 @@
      </spacer>
     </item>
     <item>
-     <widget class="QPushButton" name="ExitBtn">
+     <widget class="QPushButton" name="LoginBtn">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -174,7 +174,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Exit</string>
+       <string>Login</string>
       </property>
      </widget>
     </item>

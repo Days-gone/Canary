@@ -17,7 +17,8 @@ Launcher::~Launcher()
 
 void Launcher::on_LoginBtn_clicked()
 {
-//    _socket->connectToHost("101.42.174.249",8080);
+//    _socket->connectToHost("10x1.42.174.249",8080);
+    qDebug() << "login\n";
     _socket->connectToHost("localhost",8080);
 
     if (_socket->waitForConnected(5000)){
@@ -39,11 +40,19 @@ void Launcher::on_LoginBtn_clicked()
             throw std::runtime_error("Server Data Error\n");
         }
         QJsonObject recv = doc.object();
+        if (recv["Login_bool"].toString() != "true"){
+            QMessageBox::information(this,"Fatal","Login failed");
+            return ;
+        }
         QVector<QString> name_list;
-        int total = recv["user_num"].toInt();
+        int total = recv["User_num"].toInt();
         for(int i {1}; i <= total; ++ i){
             QString key = "user" + QString::number(i);
             name_list.emplace_back(recv[key].toString());
+        }
+        for(auto i:name_list)
+        {
+            qDebug() << i << "\n";
         }
 
         _chat = std::make_shared<Chat>(ui->NameInput->text(),_socket,this);
@@ -53,9 +62,39 @@ void Launcher::on_LoginBtn_clicked()
     }
 }
 
-
-void Launcher::on_ExitBtn_clicked()
+void Launcher::on_RegiBtn_clicked()
 {
-    exit(0);
+    qDebug() << "register\n";
+    _socket->connectToHost("localhost",8080);
+    if (_socket->waitForConnected(5000)){
+        QJsonObject mes;
+        mes["Level"] = "system";
+        mes["Type"] = "register";
+        QJsonObject content;
+        content["Username"] = ui->NameInput->text();
+        content["Password"] = ui->KeyInput->text();
+        mes["Content"] = content;
+
+        QJsonDocument doc(mes);
+        _socket->write(doc.toJson());
+    }
+
+    if (_socket->waitForReadyRead(5000)){
+        QJsonDocument doc = QJsonDocument::fromJson(_socket->readAll());
+
+        if (doc.isNull() || !doc.isObject()){
+            throw std::runtime_error("Server Data Error\n");
+        }
+
+        QJsonObject recv = doc.object();
+        if (recv["Regi_bool"].toBool()) {
+            QString react = recv["Register_info"].toString();
+            QMessageBox::information(this,"Tips", react);
+        } else{
+            QString react = recv["Register_info"].toString();
+            QMessageBox::information(this,"Tips", react);
+        }
+    }
+    _socket->close();
 }
 

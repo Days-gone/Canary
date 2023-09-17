@@ -7,6 +7,7 @@
 #include <QTcpSocket>
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <QMessageBox>
 
 #include "chat.h"
 
@@ -25,7 +26,7 @@ public:
 private slots:
     void on_LoginBtn_clicked();
 
-    void on_ExitBtn_clicked();
+    void on_RegiBtn_clicked();
 
 private:
     Ui::Launcher *ui;
